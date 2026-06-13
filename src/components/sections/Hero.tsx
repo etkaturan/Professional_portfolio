@@ -178,7 +178,7 @@ export default function Hero() {
                   <path d="M3 28c0-7.18 5.82-13 13-13s13 5.82 13 13" stroke="#35322a" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
                 <span className="font-mono text-[8px] tracking-[0.16em] text-text-ghost uppercase">
-                  your photo
+                  <img src="/documents/my_image.jpeg" alt="profile" />
                 </span>
               </div>
               <div className="photo-scan-line" />
