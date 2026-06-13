@@ -1,0 +1,98 @@
+/* ─────────────────────────────────────────────────────────────
+   Projects section — component-scoped styles
+───────────────────────────────────────────────────────────────*/
+
+/* ── 3D flip card container ──────────────────────────────────── */
+.flip-card {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* ── Front and back shared styles ───────────────────────────── */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 5px;
+  border: 1px solid #252118;
+  background: #131310;
+  overflow: hidden;
+}
+
+/* ── Back face — rotated 180deg ─────────────────────────────── */
+.flip-card-back {
+  transform: rotateY(180deg);
+  background: #191714;
+}
+
+/* ── Amber left border reveal on card hover ─────────────────── */
+.flip-card-front::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #EF9F27;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.25s ease;
+  border-radius: 0 1px 1px 0;
+  z-index: 1;
+}
+
+.flip-card:hover .flip-card-front::before,
+.flip-card.flipped .flip-card-front::before {
+  transform: scaleY(1);
+}
+
+/* ── Featured badge shimmer ─────────────────────────────────── */
+.featured-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-badge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(239,159,39,0.3),
+    transparent
+  );
+  animation: shimmer 2.5s infinite;
+}
+
+@keyframes shimmer {
+  0%   { left: -100%; }
+  100% { left: 200%;  }
+}
+
+/* ── Flip hint icon ─────────────────────────────────────────── */
+.flip-hint {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.flip-card:hover .flip-hint {
+  opacity: 1;
+}

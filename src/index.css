@@ -1,0 +1,125 @@
+/* ── Tailwind directives ─────────────────────────── */
+/* ── Tailwind v4 import ──────────────────────────── */
+@import "tailwindcss";
+
+/* ── Base resets ─────────────────────────────────── */
+
+/* ── Base resets ─────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #070707;
+  color: #f0ece3;
+  font-family: "Inter", system-ui, sans-serif;
+  overflow-x: hidden;
+  /* Hide default cursor — our custom one takes over */
+  cursor: none;
+}
+
+/* ── Custom cursor ───────────────────────────────── */
+#cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid #EF9F27;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease,
+              height 0.2s ease,
+              border-color 0.2s ease,
+              opacity 0.2s ease;
+  will-change: transform;
+}
+
+#cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  background: #EF9F27;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+/* Cursor states applied via JS */
+body.cursor-hover #cursor-ring {
+  width: 48px;
+  height: 48px;
+  border-color: #FAC775;
+  opacity: 0.6;
+}
+
+body.cursor-text #cursor-ring {
+  width: 3px;
+  height: 24px;
+  border-radius: 2px;
+  border-color: #EF9F27;
+}
+
+body.cursor-hidden #cursor-ring,
+body.cursor-hidden #cursor-dot {
+  opacity: 0;
+}
+
+/* ── Selection color ─────────────────────────────── */
+::selection {
+  background: rgba(239, 159, 39, 0.25);
+  color: #FAC775;
+}
+
+/* ── Scrollbar ───────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #070707;
+}
+::-webkit-scrollbar-thumb {
+  background: #3d2608;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #EF9F27;
+}
+
+/* ── Section base ────────────────────────────────── */
+section {
+  position: relative;
+}
+
+/* ── Utility: amber left border reveal on hover ──── */
+.hover-border-left {
+  position: relative;
+  overflow: hidden;
+}
+.hover-border-left::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #EF9F27;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.25s ease;
+}
+.hover-border-left:hover::before {
+  transform: scaleY(1);
+}

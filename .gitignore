@@ -1,0 +1,47 @@
+# ── Dependencies ─────────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+
+# ── Build output ─────────────────────────────────────────────
+dist/
+dist-ssr/
+build/
+
+# ── Environment variables — NEVER commit these ───────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ── Vite cache ───────────────────────────────────────────────
+.vite/
+vite.config.ts.timestamp*
+
+# ── OS files ─────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Editor files ─────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ── Logs ─────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── TypeScript ────────────────────────────────────────────────
+*.tsbuildinfo
+
+# ── Optional: local test files ───────────────────────────────
+*.local

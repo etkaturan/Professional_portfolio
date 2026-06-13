@@ -1,0 +1,71 @@
+/* ─────────────────────────────────────────────────────────────
+   About section — component-scoped styles
+───────────────────────────────────────────────────────────────*/
+
+/* ── Skill bar fill animation ────────────────────────────────── */
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 1px;
+  background: #EF9F27;
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-bar-fill.animate {
+  width: var(--target-width);
+}
+
+/* ── Language level badge ────────────────────────────────────── */
+.lang-level {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  padding: 2px 7px;
+  border-radius: 2px;
+  border: 1px solid #3d2608;
+  color: #EF9F27;
+  background: rgba(239,159,39,0.06);
+}
+
+/* ── Stack icon hover tooltip ────────────────────────────────── */
+.stack-icon-wrap {
+  position: relative;
+}
+
+.stack-icon-wrap .tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #191714;
+  border: 1px solid #252118;
+  border-radius: 3px;
+  padding: 3px 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  color: #f0ece3;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 10;
+}
+
+.stack-icon-wrap:hover .tooltip {
+  opacity: 1;
+}
+
+/* ── Section heading amber line ──────────────────────────────── */
+.section-heading-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.section-heading-line::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #1c1a15;
+}

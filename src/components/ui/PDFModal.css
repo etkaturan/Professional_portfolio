@@ -1,0 +1,154 @@
+/* ─────────────────────────────────────────────────────────────
+   PDF Modal — component-scoped styles
+───────────────────────────────────────────────────────────────*/
+
+/* ── Backdrop ────────────────────────────────────────────────── */
+.pdf-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 7, 7, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ── Modal container ─────────────────────────────────────────── */
+.pdf-modal {
+  position: fixed;
+  z-index: 101;
+  background: #0d0d0b;
+  border: 1px solid #252118;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Normal state ────────────────────────────────────────────── */
+.pdf-modal.normal {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(860px, 92vw);
+  height: min(680px, 88vh);
+}
+
+/* ── Fullscreen state ────────────────────────────────────────── */
+.pdf-modal.fullscreen {
+  top: 0;
+  left: 0;
+  transform: none;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  border: none;
+}
+
+/* ── Minimized state — floating bar at bottom right ─────────── */
+.pdf-modal.minimized {
+  top: auto;
+  left: auto;
+  bottom: 24px;
+  right: 24px;
+  transform: none;
+  width: 280px;
+  height: 48px;
+  border-radius: 6px;
+}
+
+.pdf-modal.minimized .pdf-modal-body {
+  display: none;
+}
+
+/* ── Modal title bar ─────────────────────────────────────────── */
+.pdf-modal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  height: 44px;
+  border-bottom: 1px solid #1c1a15;
+  background: #0a0a08;
+  flex-shrink: 0;
+  cursor: move;
+  user-select: none;
+}
+
+.pdf-modal.minimized .pdf-modal-bar {
+  border-bottom: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+/* ── Modal body — iframe container ──────────────────────────── */
+.pdf-modal-body {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.pdf-modal-body iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fff;
+}
+
+/* ── Control buttons ─────────────────────────────────────────── */
+.pdf-ctrl-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  border: 1px solid #1c1a15;
+  background: transparent;
+  color: #6e6a60;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.pdf-ctrl-btn:hover {
+  border-color: #EF9F27;
+  color: #EF9F27;
+  background: rgba(239,159,39,0.07);
+}
+
+/* ── Loading state ───────────────────────────────────────────── */
+.pdf-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #0d0d0b;
+}
+
+.pdf-loading-bar {
+  width: 120px;
+  height: 1px;
+  background: #1c1a15;
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.pdf-loading-fill {
+  height: 100%;
+  background: #EF9F27;
+  border-radius: 1px;
+  animation: pdf-load 1.4s ease-in-out infinite;
+}
+
+@keyframes pdf-load {
+  0%   { width: 0%;   margin-left: 0%;    }
+  50%  { width: 60%;  margin-left: 20%;   }
+  100% { width: 0%;   margin-left: 100%;  }
+}

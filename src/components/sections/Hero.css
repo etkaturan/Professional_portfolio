@@ -1,0 +1,103 @@
+/* ─────────────────────────────────────────────────────────────
+   Hero section — component-scoped styles
+   Handles animations and effects that Tailwind can't express
+───────────────────────────────────────────────────────────────*/
+
+/* ── Photo frame scan line animation ────────────────────────── */
+.photo-scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #EF9F27 40%,
+    #FAC775 50%,
+    #EF9F27 60%,
+    transparent 100%
+  );
+  opacity: 0.25;
+  animation: scan-drift 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scan-drift {
+  0%   { top: 0%; }
+  100% { top: 100%; }
+}
+
+/* ── Photo frame corner brackets ────────────────────────────── */
+.photo-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+}
+.photo-corner-tl { top: -1px;    left: -1px;  border-top:    2px solid #EF9F27; border-left:   2px solid #EF9F27; border-radius: 2px 0 0 0; }
+.photo-corner-tr { top: -1px;    right: -1px; border-top:    2px solid #EF9F27; border-right:  2px solid #EF9F27; border-radius: 0 2px 0 0; }
+.photo-corner-bl { bottom: -1px; left: -1px;  border-bottom: 2px solid #EF9F27; border-left:   2px solid #EF9F27; border-radius: 0 0 0 2px; }
+.photo-corner-br { bottom: -1px; right: -1px; border-bottom: 2px solid #EF9F27; border-right:  2px solid #EF9F27; border-radius: 0 0 2px 0; }
+
+/* ── Name underline fill animation ──────────────────────────── */
+.name-underline-fill {
+  height: 2px;
+  background: #EF9F27;
+  border-radius: 1px;
+  width: 0%;
+  animation: underline-expand 1s ease forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes underline-expand {
+  from { width: 0%; }
+  to   { width: 55%; }
+}
+
+/* ── Project card left-border reveal on hover ───────────────── */
+.project-card-hover {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.project-card-hover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #EF9F27;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.25s ease;
+  border-radius: 0 1px 1px 0;
+}
+
+.project-card-hover:hover::before {
+  transform: scaleY(1);
+}
+
+/* ── GitHub contribution box colors ─────────────────────────── */
+.contrib-box      { background: #201e18; border-radius: 2px; }
+.contrib-level-1  { background: #3d2608; }
+.contrib-level-2  { background: #7a4f10; }
+.contrib-level-3  { background: #BA7517; }
+.contrib-level-4  { background: #EF9F27; }
+
+/* ── Stats count-up animation ───────────────────────────────── */
+.stat-number {
+  animation: count-up 0.5s ease forwards;
+  opacity: 0;
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+.stat-number:nth-child(1) { animation-delay: 0.6s; }
+.stat-number:nth-child(2) { animation-delay: 0.8s; }
+.stat-number:nth-child(3) { animation-delay: 1.0s; }
+.stat-number:nth-child(4) { animation-delay: 1.2s; }

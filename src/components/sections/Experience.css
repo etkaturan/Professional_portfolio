@@ -1,0 +1,90 @@
+/* ─────────────────────────────────────────────────────────────
+   Experience section — component-scoped styles
+───────────────────────────────────────────────────────────────*/
+
+/* ── Vertical timeline line ──────────────────────────────────── */
+.timeline-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #1c1a15;
+}
+
+/* Amber fill that grows downward as you scroll */
+.timeline-line-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, #EF9F27, #3d2608);
+  transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Timeline node dot ───────────────────────────────────────── */
+.timeline-dot {
+  position: absolute;
+  left: -4px;
+  top: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #0d0d0b;
+  border: 1.5px solid #3d2608;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  z-index: 1;
+}
+
+.timeline-item:hover .timeline-dot,
+.timeline-item.active .timeline-dot {
+  border-color: #EF9F27;
+  background: #EF9F27;
+  box-shadow: 0 0 8px rgba(239,159,39,0.4);
+}
+
+/* ── Timeline item ───────────────────────────────────────────── */
+.timeline-item {
+  position: relative;
+  padding-left: 24px;
+  padding-bottom: 36px;
+  cursor: default;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+/* ── Stack chip row ──────────────────────────────────────────── */
+.exp-stack-chip {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  padding: 2px 7px;
+  border: 1px solid #252118;
+  border-radius: 2px;
+  color: #6e6a60;
+  letter-spacing: 0.04em;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.timeline-item:hover .exp-stack-chip {
+  border-color: #3d2608;
+  color: #EF9F27;
+}
+
+/* ── Expand/collapse bullet animation ───────────────────────── */
+.bullet-list {
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease;
+}
+
+.bullet-list.collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+.bullet-list.expanded {
+  max-height: 600px;
+  opacity: 1;
+}

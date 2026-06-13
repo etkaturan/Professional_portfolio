@@ -1,0 +1,123 @@
+/* ─────────────────────────────────────────────────────────────
+   Contact section — component-scoped styles
+───────────────────────────────────────────────────────────────*/
+
+/* ── Form input focus glow ───────────────────────────────────── */
+.contact-input {
+  background: #0d0d0b;
+  border: 1px solid #252118;
+  border-radius: 3px;
+  color: #f0ece3;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  padding: 10px 14px;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.contact-input::placeholder {
+  color: #35322a;
+}
+
+.contact-input:focus {
+  border-color: #EF9F27;
+  box-shadow: 0 0 0 3px rgba(239,159,39,0.08);
+}
+
+.contact-input:hover:not(:focus) {
+  border-color: #3d2608;
+}
+
+/* ── Textarea specific ───────────────────────────────────────── */
+textarea.contact-input {
+  resize: vertical;
+  min-height: 120px;
+  max-height: 300px;
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+}
+
+/* ── Submit button shimmer ───────────────────────────────────── */
+.contact-submit {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-submit::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.15),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+.contact-submit:hover::after {
+  left: 150%;
+}
+
+/* ── Social link hover ───────────────────────────────────────── */
+.contact-social-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid #1c1a15;
+  border-radius: 5px;
+  background: #0d0d0b;
+  transition: border-color 0.2s ease,
+              background 0.2s ease,
+              transform 0.2s ease;
+  text-decoration: none;
+}
+
+.contact-social-link:hover {
+  border-color: #3d2608;
+  background: #131310;
+  transform: translateX(4px);
+}
+
+/* ── Copy to clipboard feedback ─────────────────────────────── */
+.copy-feedback {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: #4ade80;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.copy-feedback.visible {
+  opacity: 1;
+}
+
+/* ── Status message ──────────────────────────────────────────── */
+.form-status {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  padding: 10px 14px;
+  border-radius: 3px;
+  letter-spacing: 0.06em;
+}
+
+.form-status.success {
+  border: 1px solid #166534;
+  background: rgba(22,101,52,0.15);
+  color: #4ade80;
+}
+
+.form-status.error {
+  border: 1px solid #7f1d1d;
+  background: rgba(127,29,29,0.15);
+  color: #f87171;
+}

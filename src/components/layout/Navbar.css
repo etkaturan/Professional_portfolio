@@ -1,0 +1,14 @@
+/* ─────────────────────────────────────────────────────────────
+   Navbar — component-scoped styles
+   Only styles that can't be cleanly expressed in Tailwind
+───────────────────────────────────────────────────────────────*/
+
+/* Amber accent line under logo on mount */
+.nav-logo-line {
+  position: absolute;
+  bottom: -1px;
+  left: 28px;
+  width: 40px;
+  height: 1px;
+  background: var(--amber, #EF9F27);
+}
