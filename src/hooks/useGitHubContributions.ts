@@ -31,7 +31,10 @@ export function useGitHubContributions(
   useEffect(() => {
     const fetchContributions = async () => {
       try {
-        const token = import.meta.env.VITE_GITHUB_TOKEN
+        // import.meta.env typing can vary; cast via unknown to avoid incompatible type errors
+        const token = (import.meta.env as unknown as { VITE_GITHUB_TOKEN?: string }).VITE_GITHUB_TOKEN
+
+        if (!token) throw new Error("Missing GitHub token (VITE_GITHUB_TOKEN)")
 
         const query = `
           query($username: String!) {

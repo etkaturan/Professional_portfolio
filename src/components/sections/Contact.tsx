@@ -29,8 +29,10 @@ interface ImportMetaEnv {
   readonly VITE_EMAILJS_PUBLIC_KEY: string
 }
 
-interface ImportMeta {
-  readonly env: ImportMetaEnv
+declare global {
+  interface ImportMeta {
+    readonly env: ImportMetaEnv
+  }
 }
 
 // ── Form state types ──────────────────────────────────────────
