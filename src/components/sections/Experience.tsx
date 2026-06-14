@@ -139,12 +139,12 @@ export default function Experience() {
           </div>
 
           <div className="mt-auto p-4 border border-amber-dim rounded-sm bg-amber-glow">
-            <p className="font-mono text-[9px] text-amber tracking-[0.14em] uppercase mb-2">currently</p>
-            <p className="font-mono text-[10px] text-text-secondary leading-relaxed">
-              B.Sc. Computer Science<br />
-              Hof University · 2023–2026<br />
-              <span className="text-amber">Final year</span>
-            </p>
+      
+          <p className="font-mono text-[10px] text-text-secondary leading-relaxed">
+            B.Sc. Computer Science<br />
+            Hof University · 2023–2026<br />
+            <span className="text-amber">Graduated March 2026</span>
+          </p>
           </div>
         </div>
       </div>

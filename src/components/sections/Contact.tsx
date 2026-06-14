@@ -23,6 +23,16 @@ import { containerVariants, itemVariants } from "@/utils/motion"
 // @ts-ignore: Allow side-effect CSS import without declaration file
 import "./Contact.css"
 
+interface ImportMetaEnv {
+  readonly VITE_EMAILJS_SERVICE_ID: string
+  readonly VITE_EMAILJS_TEMPLATE_ID: string
+  readonly VITE_EMAILJS_PUBLIC_KEY: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 // ── Form state types ──────────────────────────────────────────
 interface FormData {
   name:    string
@@ -96,8 +106,18 @@ export default function Contact() {
     try {
       // TODO: wire EmailJS in polish pass
       // import emailjs from '@emailjs/browser'
-      // await emailjs.send(SERVICE_ID, TEMPLATE_ID, { ... }, PUBLIC_KEY)
-      await new Promise((resolve) => setTimeout(resolve, 1200))
+      const emailjs = await import("@emailjs/browser")
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name:  form.name,
+          from_email: form.email,
+          subject:    form.subject || "Portfolio contact",
+          message:    form.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
       setStatus("success")
       setForm({ name: "", email: "", subject: "", message: "" })
       setTimeout(() => setStatus("idle"), 5000)

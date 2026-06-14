@@ -170,17 +170,14 @@ export default function Hero() {
 
         {/* Photo frame */}
         <div className="relative z-10 flex flex-col items-center pt-10">
-          <div className="relative w-[140px] h-[170px]">
+          <div className="relative w-[340px] h-[370px]">
             <div className="absolute inset-0 border border-border-strong rounded-lg overflow-hidden bg-bg-tertiary">
-              <div className="w-full h-full flex flex-col items-center justify-center gap-2">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                  <circle cx="16" cy="12" r="7" stroke="#35322a" strokeWidth="1.5" />
-                  <path d="M3 28c0-7.18 5.82-13 13-13s13 5.82 13 13" stroke="#35322a" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
-                <span className="font-mono text-[8px] tracking-[0.16em] text-text-ghost uppercase">
-                  <img src="/documents/my_image.jpeg" alt="profile" />
-                </span>
-              </div>
+              {/* Your photo */}
+              <img
+                src="public/documents/my_image.jpeg"
+                alt="Mekhmetetka Turan"
+                className="w-full h-full object-cover object-top"
+              />
               <div className="photo-scan-line" />
             </div>
             <div className="photo-corner photo-corner-tl" />

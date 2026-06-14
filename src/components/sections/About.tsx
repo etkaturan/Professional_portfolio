@@ -133,9 +133,9 @@ export default function About() {
           </div>
           <div className="flex flex-col gap-2">
             {[
-              "B.Sc. Computer Science — Hof University",
-              "Thesis: AI + spatial hypertext frameworks",
-              "Exploring advanced LLM agent architectures",
+              "B.Sc. Computer Science — Graduated March 2026",
+              "Thesis: AI + spatial hypertext — Grade 2.3",
+              "Actively seeking full-stack & AI engineering roles",
             ].map((item) => (
               <div key={item} className="flex items-start gap-2">
                 <span className="font-mono text-amber text-[10px] mt-0.5 flex-shrink-0">▸</span>

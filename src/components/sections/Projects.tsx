@@ -7,6 +7,8 @@ import type { Project } from "@/types"
 import { containerVariants, cardVariants } from "@/utils/motion"
 // @ts-ignore: CSS import declarations are handled by the bundler
 import "./Projects.css"
+import GitHubGraph from "@/components/ui/GitHubGraph"
+
 
 interface FlipCardProps {
   project: Project
@@ -115,30 +117,37 @@ export default function Projects() {
         ))}
       </motion.div>
 
-      <div className="border-t border-border px-8 lg:px-12 py-8">
-        <div className="flex items-center gap-3 mb-6">
-          <span className="font-mono text-[9px] text-text-ghost tracking-widest">//</span>
-          <span className="font-mono text-[9px] text-amber tracking-[0.2em] uppercase">github activity</span>
-          <span className="font-mono text-[9px] text-text-ghost">— coming soon</span>
-        </div>
-        <div className="flex gap-1 flex-wrap opacity-30">
-          {Array.from({ length: 52 }).map((_, weekIdx) => (
-            <div key={weekIdx} className="flex flex-col gap-1">
-              {Array.from({ length: 7 }).map((_, dayIdx) => {
-                const level = Math.floor(Math.abs(Math.sin(weekIdx * 7 + dayIdx) * 5))
-                const colors = ["bg-bg-elevated", "bg-amber-dim", "bg-amber-dim opacity-60", "bg-amber-dark", "bg-amber"]
-                return <div key={dayIdx} className={`w-2.5 h-2.5 rounded-sm ${colors[level] ?? colors[0]}`} />
-              })}
-            </div>
-          ))}
-        </div>
-        <div className="flex items-center justify-between mt-6">
-          <span className="font-mono text-[10px] text-text-secondary">view all repositories</span>
-          <a href="https://github.com/etkaturan" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-mono text-[10px] text-text-secondary hover:text-amber transition-colors duration-150">
-            <IconBrandGithub size={13} />github.com/etkaturan
-          </a>
-        </div>
-      </div>
+{/* ── GitHub activity ────────────────────────────────────── */}
+<div className="border-t border-border px-8 lg:px-12 py-10">
+
+  {/* Header */}
+  <div className="flex items-center justify-between mb-8">
+    <div className="flex items-center gap-3">
+      <span className="font-mono text-[9px] text-text-ghost tracking-widest">//</span>
+      <span className="font-mono text-[9px] text-amber tracking-[0.2em] uppercase">
+        github activity
+      </span>
+    </div>
+    
+    <a
+      href="https://github.com/etkaturan"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-2 font-mono text-[10px] text-text-secondary hover:text-amber transition-colors duration-150"
+    >
+      <IconBrandGithub size={13} />
+      github.com/etkaturan
+    </a>
+  </div>
+
+  {/* Graph — full width container */}
+  <div className="w-full overflow-x-auto">
+    <div className="min-w-full">
+      <GitHubGraph username="etkaturan" />
+    </div>
+  </div>
+
+</div>
     </section>
   )
 }

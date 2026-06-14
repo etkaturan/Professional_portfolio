@@ -53,10 +53,10 @@ export const personal = {
 
 // ── Stats (hero strip) ────────────────────────────────────────
 export const stats: Stat[] = [
-  { value: "3",  label: "Projects"   },
-  { value: "4+", label: "Yrs exp"    },
+  { value: "5+",  label: "Projects"   },
+  { value: "1", label: "Yrs exp"    },
   { value: "5",  label: "Languages"  },
-  { value: "EU", label: "Blue Card"  },
+  { value: "B.Sc", label: "Graduated" },
 ]
 
 // ── Social links ──────────────────────────────────────────────
@@ -169,7 +169,7 @@ export const education: Education[] = [
     gradeNote:   "German scale — 1.0 is best",
     thesis:      "Hybrid AI framework combining Generative AI with spatial hypertext to support human-AI collaborative knowledge building",
     thesisGrade: "2.3",
-    note:        "Transferred from SDU University (Kazakhstan) as part of dual-degree programme · Taught in English",
+    note: "Dual-degree programme DE + KZ · Graduated March 2026 · Taught in English",
   },
   {
     id:          "sdu",
