@@ -174,7 +174,7 @@ export default function Hero() {
             <div className="absolute inset-0 border border-border-strong rounded-lg overflow-hidden bg-bg-tertiary">
               {/* Your photo */}
               <img
-                src="public/documents/my_image.jpeg"
+                src="/documents/my_image.jpeg"
                 alt="Mekhmetetka Turan"
                 className="w-full h-full object-cover object-top"
               />
