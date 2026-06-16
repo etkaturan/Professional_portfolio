@@ -192,10 +192,10 @@ export default function Hero () {
 
         {/* Photo frame */}
         <div className="relative z-10 flex flex-col items-center pt-10">
-          <div className="relative w-[140px] h-[170px]">
+          <div className="relative w-[340px] h-[370px]">
             <div className="absolute inset-0 border border-border-strong rounded-lg overflow-hidden bg-bg-tertiary">
               <img
-                src="/images/photo.jpg"
+                src="/documents/my_image.jpeg"
                 alt="Mekhmetetka Turan"
                 className="w-full h-full object-cover object-top"
               />
