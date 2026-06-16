@@ -4,22 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- ── SEO ─────────────────────────────────────── -->
+    <!-- ── Primary SEO ──────────────────────────────────────── -->
     <title>Mekhmetetka Turan — Full-Stack Developer & AI Engineer</title>
-    <meta name="description" content="Full-Stack Developer specialising in React, TypeScript, Python and AI systems. Based in Fürth, Germany. EU Blue Card eligible." />
+    <meta name="description" content="Full-Stack Developer specialising in React, TypeScript, Python and AI systems. B.Sc. Computer Science, Hof University. Based in Fürth, Germany. EU Blue Card eligible." />
     <meta name="author" content="Mekhmetetka Turan" />
-    <meta name="keywords" content="full-stack developer, react, typescript, python, AI, fastapi, neo4j, langchain, fürth, germany" />
+    <meta name="keywords" content="full-stack developer, react, typescript, python, AI engineer, fastapi, neo4j, langchain, fürth, germany, EU blue card, junior developer" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://etkaturan-portfolio.vercel.app/" />
 
-    <!-- ── Open Graph (LinkedIn / social previews) ──── -->
-    <meta property="og:title" content="Mekhmetetka Turan — Full-Stack Developer" />
-    <meta property="og:description" content="Building AI-powered research tools, language learning platforms & production web applications." />
-    <meta property="og:type" content="profile" />
-    <meta property="og:url" content="https://etkaturan.dev" />
+    <!-- ── Open Graph — LinkedIn / Facebook previews ────────── -->
+    <meta property="og:type"        content="profile" />
+    <meta property="og:title"       content="Mekhmetetka Turan — Full-Stack Developer & AI Engineer" />
+    <meta property="og:description" content="Building AI-powered research tools, language learning platforms & production web applications. React · TypeScript · Python · Fürth, Germany." />
+    <meta property="og:url"         content="https://etkaturan-portfolio.vercel.app/" />
+    <meta property="og:image"       content="https://etkaturan-portfolio.vercel.app/images/og-image.jpg" />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale"      content="en_GB" />
+    <meta property="og:site_name"   content="Mekhmetetka Turan Portfolio" />
 
-    <!-- ── Favicon placeholder ──────────────────────── -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- ── Twitter / X card ─────────────────────────────────── -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="Mekhmetetka Turan — Full-Stack Developer & AI Engineer" />
+    <meta name="twitter:description" content="Building AI-powered research tools, language learning platforms & production web applications." />
+    <meta name="twitter:image"       content="https://etkaturan-portfolio.vercel.app/images/og-image.jpg" />
 
-    <!-- ── Fonts ────────────────────────────────────── -->
+    <!-- ── Favicon ──────────────────────────────────────────── -->
+    <link rel="icon"             type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon"             type="image/png"     href="/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon"                      href="/apple-touch-icon.png" sizes="180x180" />
+    <meta name="theme-color" content="#070707" />
+
+    <!-- ── Fonts ────────────────────────────────────────────── -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,20 +43,46 @@
       rel="stylesheet"
     />
 
+    <!-- ── Devicons ─────────────────────────────────────────── -->
     <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
     />
 
-    <!-- ── Umami Analytics (add your script after setup) ── -->
-    <!-- <script defer src="https://analytics.umami.is/script.js" data-website-id="YOUR_ID"></script> -->
+    <!-- ── Umami Analytics ──────────────────────────────────── -->
+    <!-- Replace YOUR_UMAMI_ID with your actual website ID -->
+    <!-- <script defer src="https://cloud.umami.is/script.js" data-website-id="YOUR_UMAMI_ID"></script> -->
 
-    <!-- ── Microsoft Clarity (add after setup) ────────── -->
-    <!-- Paste Clarity snippet here -->
+    <!-- ── Structured data — JSON-LD ────────────────────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Mekhmetetka Turan",
+      "alternateName": "Etka Turan",
+      "jobTitle": "Full-Stack Developer & AI Engineer",
+      "description": "Full-Stack Developer specialising in React, TypeScript, Python and AI systems.",
+      "url": "https://etkaturan-portfolio.vercel.app",
+      "email": "etkatur11@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Fürth",
+        "addressCountry": "DE"
+      },
+      "sameAs": [
+        "https://github.com/etkaturan",
+        "https://linkedin.com/in/etka-turan"
+      ],
+      "knowsAbout": [
+        "React", "TypeScript", "Python", "FastAPI",
+        "AI Systems", "LangChain", "Neo4j", "Docker"
+      ]
+    }
+    </script>
   </head>
 
   <body class="bg-bg-primary text-text-primary antialiased">
-    <!-- Custom cursor rings — positioned via JS -->
+    <!-- Custom cursor rings -->
     <div id="cursor-ring" aria-hidden="true"></div>
     <div id="cursor-dot"  aria-hidden="true"></div>
 
