@@ -17,6 +17,7 @@ import {
   IconFileTypePdf,
   IconChevronUp,
 } from "@tabler/icons-react"
+// @ts-ignore: allow importing CSS side-effect in projects without CSS module typings
 import "./PDFModal.css"
 
 type ModalState = "normal" | "fullscreen" | "minimized"
