@@ -1,26 +1,33 @@
+// ─────────────────────────────────────────────────────────────
+// Hero section — with analytics tracking
+// ─────────────────────────────────────────────────────────────
+
 import { TypeAnimation } from "react-type-animation"
 import { motion } from "framer-motion"
 import {
   IconBrandGithub,
   IconDownload,
   IconArrowRight,
+  IconMapPin,
 } from "@tabler/icons-react"
 import GridBackground from "@/components/ui/GridBackground"
 import { personal, stats, projects } from "@/data/portfolio"
+import { useAnalytics } from "@/hooks/useAnalytics"
 import {
   containerVariants,
   heroItemVariants as itemVariants,
   slideInRightVariants,
 } from "@/utils/motion"
-// @ts-ignore
+// @ts-ignore: CSS side-effect import without type declarations
 import "./Hero.css"
 
-export default function Hero() {
+export default function Hero () {
+  const { trackEvent } = useAnalytics()
   const featuredProjects = projects.filter((p) => p.featured)
 
   const scrollToProjects = () => {
-    const el = document.getElementById("projects")
-    if (el) el.scrollIntoView({ behavior: "smooth" })
+    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
+    trackEvent("hero-cta-projects")
   }
 
   return (
@@ -30,7 +37,7 @@ export default function Hero() {
     >
       {/* LEFT PANEL */}
       <motion.div
-        className="flex flex-col justify-between px-8 lg:px-12 py-12 border-r border-border relative"
+        className="flex flex-col justify-between px-6 sm:px-8 lg:px-12 py-8 sm:py-12 border-r border-border relative"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -41,9 +48,9 @@ export default function Hero() {
 
         <div>
           {/* Tag row */}
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-2 mb-6">
+          <motion.div variants={itemVariants} className="flex flex-wrap gap-2 mb-5 sm:mb-6">
             {[
-              { label: "Full-Stack Dev", accent: true },
+              { label: "Full-Stack Dev", accent: true  },
               { label: "AI Engineer",   accent: false },
               { label: "Fürth, DE",     accent: false },
               { label: "EU Blue Card",  accent: false },
@@ -63,11 +70,18 @@ export default function Hero() {
           </motion.div>
 
           {/* Name block */}
-          <motion.div variants={itemVariants} className="mb-2">
-            <p className="font-mono text-[11px] tracking-[0.24em] text-text-secondary uppercase mb-1">
+          <motion.div variants={itemVariants} className="mb-2 relative">
+            <div
+              className="absolute -top-6 -left-6 w-64 h-32 pointer-events-none hidden lg:block"
+              style={{
+                background: "radial-gradient(ellipse at center, rgba(239,159,39,0.07) 0%, transparent 70%)",
+                filter: "blur(20px)",
+              }}
+            />
+            <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.24em] text-text-secondary uppercase mb-1">
               {personal.firstName}
             </p>
-            <h1 className="font-sans text-5xl lg:text-6xl font-bold tracking-tight leading-none text-text-primary">
+            <h1 className="font-sans text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-none text-text-primary">
               Tu<span className="text-amber">ran</span>
             </h1>
             <div className="h-px bg-border-strong mt-3 overflow-hidden w-full">
@@ -75,11 +89,8 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Typewriter role */}
-          <motion.div
-            variants={itemVariants}
-            className="flex items-center gap-2 mt-4 mb-4"
-          >
+          {/* Typewriter */}
+          <motion.div variants={itemVariants} className="flex items-center gap-2 mt-4 mb-4">
             <span className="font-mono text-amber text-xs">//</span>
             <span className="font-mono text-text-secondary text-xs tracking-wide">
               <TypeAnimation
@@ -107,11 +118,20 @@ export default function Hero() {
             {personal.bio}
           </motion.p>
 
+          {/* Location — mobile only */}
+          <motion.div
+            variants={itemVariants}
+            className="flex items-center gap-1.5 mt-3 lg:hidden"
+          >
+            <IconMapPin size={11} color="#EF9F27" />
+            <span className="font-mono text-[10px] text-text-tertiary">{personal.location}</span>
+          </motion.div>
+
           {/* CTA buttons */}
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-3 mt-6">
+          <motion.div variants={itemVariants} className="flex flex-wrap gap-2 sm:gap-3 mt-5 sm:mt-6">
             <button
               onClick={scrollToProjects}
-              className="flex items-center gap-2 px-5 py-2.5 bg-amber text-bg-primary font-sans font-bold text-[10px] tracking-[0.14em] uppercase rounded-sm hover:bg-amber-light transition-colors duration-200"
+              className="flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-amber text-bg-primary font-sans font-bold text-[10px] tracking-[0.14em] uppercase rounded-sm hover:bg-amber-light transition-colors duration-200"
             >
               View projects
               <IconArrowRight size={12} />
@@ -120,7 +140,8 @@ export default function Hero() {
             <a
               href={personal.cvUrl}
               download
-              className="flex items-center gap-2 px-5 py-2.5 bg-transparent text-text-secondary font-mono text-[10px] tracking-[0.14em] uppercase border border-border-strong rounded-sm hover:border-amber hover:text-amber transition-colors duration-200"
+              onClick={() => trackEvent("cv-download")}
+              className="flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-transparent text-text-secondary font-mono text-[10px] tracking-[0.14em] uppercase border border-border-strong rounded-sm hover:border-amber hover:text-amber transition-colors duration-200"
             >
               <IconDownload size={12} />
               Download CV
@@ -130,7 +151,8 @@ export default function Hero() {
               href={personal.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 bg-transparent text-text-secondary font-mono text-[10px] tracking-[0.14em] uppercase border border-border-strong rounded-sm hover:border-amber hover:text-amber transition-colors duration-200"
+              onClick={() => trackEvent("hero-github-click")}
+              className="flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-transparent text-text-secondary font-mono text-[10px] tracking-[0.14em] uppercase border border-border-strong rounded-sm hover:border-amber hover:text-amber transition-colors duration-200"
             >
               <IconBrandGithub size={12} />
               GitHub
@@ -143,15 +165,15 @@ export default function Hero() {
           {stats.map(({ value, label }, i) => (
             <div
               key={label}
-              className="flex-1 flex flex-col items-center py-4 border-r border-border last:border-r-0"
+              className="flex-1 flex flex-col items-center py-3 sm:py-4 border-r border-border last:border-r-0"
             >
               <span
-                className="stat-number font-sans text-xl font-bold text-amber"
+                className="stat-number font-sans text-lg sm:text-xl font-bold text-amber"
                 style={{ animationDelay: `${0.6 + i * 0.15}s` }}
               >
                 {value}
               </span>
-              <span className="font-mono text-[8px] tracking-[0.16em] text-text-ghost uppercase mt-1">
+              <span className="font-mono text-[7px] sm:text-[8px] tracking-[0.12em] text-text-ghost uppercase mt-1 text-center">
                 {label}
               </span>
             </div>
@@ -170,11 +192,10 @@ export default function Hero() {
 
         {/* Photo frame */}
         <div className="relative z-10 flex flex-col items-center pt-10">
-          <div className="relative w-[340px] h-[370px]">
+          <div className="relative w-[140px] h-[170px]">
             <div className="absolute inset-0 border border-border-strong rounded-lg overflow-hidden bg-bg-tertiary">
-              {/* Your photo */}
               <img
-                src="/documents/my_image.jpeg"
+                src="/images/photo.jpg"
                 alt="Mekhmetetka Turan"
                 className="w-full h-full object-cover object-top"
               />
@@ -198,19 +219,14 @@ export default function Hero() {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent("hero-project-click", { project: project.name })}
               className="project-card-hover block bg-bg-tertiary border border-border-strong rounded-md px-4 py-3 hover:border-amber-dark hover:bg-bg-elevated"
             >
               <div className="flex items-center justify-between mb-1.5">
-                <span className="font-sans text-xs font-semibold text-text-primary">
-                  {project.name}
-                </span>
-                <span className="font-mono text-[8px] text-text-ghost">
-                  {project.year}
-                </span>
+                <span className="font-sans text-xs font-semibold text-text-primary">{project.name}</span>
+                <span className="font-mono text-[8px] text-text-ghost">{project.year}</span>
               </div>
-              <p className="text-[10px] text-text-secondary leading-relaxed mb-2">
-                {project.tagline}
-              </p>
+              <p className="text-[10px] text-text-secondary leading-relaxed mb-2">{project.tagline}</p>
               <div className="flex flex-wrap gap-1">
                 {project.stack.map((tech: string) => {
                   const isHighlighted = project.stackHighlight.includes(tech)

@@ -1,3 +1,7 @@
+// ─────────────────────────────────────────────────────────────
+// Education section — with analytics tracking
+// ─────────────────────────────────────────────────────────────
+
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
@@ -5,8 +9,9 @@ import { IconSchool, IconFileTypePdf, IconEye, IconDownload, IconAward, IconMapP
 import { education } from "@/data/portfolio"
 import type { Education as EducationType } from "@/types"
 import PDFModal from "@/components/ui/PDFModal"
+import { useAnalytics } from "@/hooks/useAnalytics"
 import { containerVariants, itemVariants } from "@/utils/motion"
-// @ts-ignore: Allow CSS side-effect import in this file
+// @ts-ignore: allow importing side-effect CSS without declaration
 import "./Education.css"
 
 const documents = [
@@ -40,6 +45,7 @@ type DocType = typeof documents[0]
 
 export default function Education() {
   const [activeDoc, setActiveDoc] = useState<DocType | null>(null)
+  const { trackEvent } = useAnalytics()
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true })
 
   return (
@@ -53,6 +59,7 @@ export default function Education() {
       </div>
 
       <motion.div ref={ref} variants={containerVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>
+
         {/* Degree cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-border border-b border-border">
           {education.map((edu: EducationType) => {
@@ -142,7 +149,10 @@ export default function Education() {
                 </div>
                 <div className="flex gap-2 mt-5">
                   <button
-                    onClick={() => setActiveDoc(doc)}
+                    onClick={() => {
+                      setActiveDoc(doc)
+                      trackEvent("document-view", { document: doc.id })
+                    }}
                     className="flex-1 flex items-center justify-center gap-1.5 font-mono text-[10px] text-text-secondary hover:text-amber border border-border-strong hover:border-amber-dim transition-colors duration-150 px-3 py-2 rounded-sm"
                   >
                     <IconEye size={12} />View
@@ -150,6 +160,7 @@ export default function Education() {
                   <a
                     href={doc.file}
                     download
+                    onClick={() => trackEvent("document-download", { document: doc.id })}
                     className="flex-1 flex items-center justify-center gap-1.5 font-mono text-[10px] text-amber border border-amber-dim hover:bg-amber-glow transition-colors duration-150 px-3 py-2 rounded-sm"
                   >
                     <IconDownload size={12} />Download
