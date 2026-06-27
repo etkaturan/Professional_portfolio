@@ -90,3 +90,12 @@ export type SectionId =
   | "experience"
   | "education"
   | "contact"
+
+  // ── Live site ──────────────────────────────────────────────────
+export interface LiveSite {
+  id:          string
+  title:       string
+  url:         string
+  description: string
+  stack:       string[]
+}
