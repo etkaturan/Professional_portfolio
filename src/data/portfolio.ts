@@ -61,9 +61,9 @@ export const stats: Stat[] = [
 
 // ── Social links ──────────────────────────────────────────────
 export const socialLinks: SocialLink[] = [
-  { label: "GitHub",   url: "https://github.com/etkaturan",            icon: "IconBrandGithub"   },
-  { label: "LinkedIn", url: "https://linkedin.com/in/etka-turan",      icon: "IconBrandLinkedin" },
-  { label: "Email",    url: "mailto:etkatur11@gmail.com",              icon: "IconMail"          },
+  { label: "GitHub",   url: "https://github.com/etkaturan",                           icon: "IconBrandGithub"   },
+  { label: "LinkedIn", url: "https://www.linkedin.com/in/etka-turan-158632226/",      icon: "IconBrandLinkedin" },
+  { label: "Email",    url: "mailto:etkatur11@gmail.com",                             icon: "IconMail"          },
 ]
 
 // ── Projects ──────────────────────────────────────────────────
