@@ -128,6 +128,18 @@ export const projects: Project[] = [
     liveUrl:        "https://all-about-english.vercel.app",
     featured:       false,
   },
+  {
+    id:             "my-new-project",
+    name:           "My New Project",
+    tagline:        "One line describing what it does",
+    description:    "Full paragraph description shown on the back of the flip card.",
+    year:           "2025",
+    stack:          ["React", "Python", "FastAPI"],   // all technologies
+    stackHighlight: ["React", "Python"],              // highlighted in amber
+    githubUrl:      "https://github.com/etkaturan/repo-name",
+    liveUrl:        undefined,                        // or "https://..." if deployed
+    featured:       false,                            // true = appears in featured flip cards
+  },
 ]
 
 // ── Work experience ───────────────────────────────────────────
@@ -296,7 +308,21 @@ export const liveSites = [
     id:          "all-about-english",
     title:       "All About English",
     url:         "https://all-about-english.vercel.app",
-    description: "English learning platform — vocabulary, grammar, and interactive exercises.",
+    description: "English learning platform with vocabulary, grammar and interactive exercises.",
     stack:       ["React", "Vercel"],
   },
+  {
+    id:          "fakir-kz",
+    title:       "Fakir KZ",
+    url:         "https://fakir-kz.vercel.app",
+    description: "Kazakh platform — deployed on Vercel.",
+    stack:       ["React", "Vercel"],
+  },
+  {
+  id:          "my-new-site",        // unique id, no spaces
+  title:       "My New Site",        // display name
+  url:         "https://mysite.vercel.app",
+  description: "Short description of what the site does.",
+  stack:       ["React", "TypeScript"],
+  },  
 ]
