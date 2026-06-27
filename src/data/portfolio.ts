@@ -30,7 +30,7 @@ export const personal = {
   workAuth:     "EU Blue Card on job offer",
   github:       "https://github.com/etkaturan",
   linkedin:     "https://linkedin.com/in/etka-turan",
-  cvUrl:        "/cv/Mekhmetetka_Turan_CV.pdf",
+  cvUrl:        "/documents/cv.pdf",
 
   // Typewriter role lines — cycles through these in the hero
   roles: [
@@ -54,7 +54,7 @@ export const personal = {
 // ── Stats (hero strip) ────────────────────────────────────────
 export const stats: Stat[] = [
   { value: "5+",  label: "Projects"   },
-  { value: "1", label: "Yrs exp"    },
+  { value: "2", label: "Yrs exp"    },
   { value: "5",  label: "Languages"  },
   { value: "B.Sc", label: "Graduated" },
 ]

@@ -27,7 +27,7 @@ const documents = [
     id:          "transcript",
     title:       "Academic Transcript",
     subtitle:    "Full grade record — Hof University",
-    file:        "/documents/transcript.pdf",
+    file:        "/documents/de_transcript.pdf",
     description: "Complete academic transcript including all module grades from Hof University.",
     badge:       null as string | null,
   },
