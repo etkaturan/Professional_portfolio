@@ -27,6 +27,7 @@ import type { Project } from "@/types"
 import { useAnalytics } from "@/hooks/useAnalytics"
 import { containerVariants, cardVariants, itemVariants } from "@/utils/motion"
 import GitHubGraph from "@/components/ui/GitHubGraph"
+import LiveSitesCarousel from "@/components/ui/LiveSitesCarousel"
 // @ts-ignore: CSS import handled by bundler
 import "./Projects.css"
 
@@ -339,113 +340,48 @@ export default function Projects() {
             <span className="font-mono text-[9px] text-text-ghost">—</span>
             <span className="font-mono text-[9px] text-text-secondary tracking-[0.16em] uppercase">live sites</span>
             <span className="font-mono text-[9px] text-text-ghost hidden sm:block">
-              {expandLevel === 0 ? "· swipe or use arrows" : `· ${visibleCount} of ${liveSites.length} shown`}
+              {expandLevel === 0 ? `· ${liveSites.length} sites` : `· showing all`}
             </span>
           </div>
 
-          {/* Controls */}
           <div className="flex items-center gap-2">
-            {/* Scroll arrows — only in collapsed mode */}
-            {expandLevel === 0 && (
-              <>
-                <button onClick={() => scrollLiveSites("left")} className="w-7 h-7 flex items-center justify-center border border-border rounded-sm text-text-secondary hover:text-amber hover:border-amber-dim transition-colors duration-150">
-                  <IconChevronLeft size={13} />
-                </button>
-                <button onClick={() => scrollLiveSites("right")} className="w-7 h-7 flex items-center justify-center border border-border rounded-sm text-text-secondary hover:text-amber hover:border-amber-dim transition-colors duration-150">
-                  <IconChevronRight size={13} />
-                </button>
-              </>
-            )}
-
-            {/* Show less */}
             {canCollapse && (
               <button
-                onClick={() => setExpandLevel((l) => Math.max(0, l - 1))}
+                onClick={() => setExpandLevel(0)}
                 className="flex items-center gap-1.5 font-mono text-[9px] text-text-secondary hover:text-amber border border-border hover:border-amber-dim px-3 py-1.5 rounded-sm transition-colors duration-150"
               >
                 <IconChevronUp size={11} />
-                <span className="hidden sm:inline">Show less</span>
+                <span className="hidden sm:inline">Collapse</span>
               </button>
             )}
-
-            {/* Show more */}
-            {hasMore && (
-              <button
-                onClick={() => setExpandLevel((l) => l + 1)}
-                className="flex items-center gap-1.5 font-mono text-[9px] text-amber border border-amber-dim hover:bg-amber-glow px-3 py-1.5 rounded-sm transition-colors duration-150"
-              >
-                <IconChevronDown size={11} />
-                <span className="hidden sm:inline">Show more</span>
-              </button>
-            )}
-
-            {/* Expand button — always visible in collapsed mode */}
             {expandLevel === 0 && (
               <button
                 onClick={() => setExpandLevel(1)}
                 className="flex items-center gap-1.5 font-mono text-[9px] text-amber border border-amber-dim hover:bg-amber-glow px-3 py-1.5 rounded-sm transition-colors duration-150"
               >
                 <IconChevronDown size={11} />
-                <span className="hidden sm:inline">Expand</span>
+                <span className="hidden sm:inline">Expand all</span>
               </button>
             )}
           </div>
         </div>
 
-        {/* Collapsed: horizontal scroll — cards fill width evenly */}
-        {expandLevel === 0 && (
-          <div
-            ref={liveSitesScrollRef}
-            className="flex gap-4 py-6 sm:py-8 overflow-x-auto"
-            style={{
-              scrollSnapType:          "x mandatory",
-              WebkitOverflowScrolling: "touch",
-              scrollbarWidth:          "none",
-              msOverflowStyle:         "none",
-              gap:                     "clamp(32px, 3vw, 64px)",
-              paddingLeft:             "clamp(1.5rem, 4vw, 3rem)",
-              paddingRight:            "clamp(1.5rem, 4vw, 1rem)",
-              marginLeft:              "clamp(1.5rem, 8vw, 2rem)",
-            }}
-          >
-            {liveSites.map((site) => (
-              <div
-                key={site.id}
-                // On mobile: 85vw wide so one card is visible with peek
-                // On desktop: calc so 3 cards fill the row with gaps
-                className="flex-shrink-0"
-                style={{
-                  scrollSnapAlign: "start",
-                  width: "clamp(370px, min(82vw, calc(46% - -68px)), 960px)",
-                }}
-              >
-                <BrowserPreview
-                  url={site.url}
-                  title={site.title}
-                  description={site.description}
-                  stack={site.stack}
-                />
-              </div>
-            ))}
-            {/* Right padding sentinel */}
-            <div className="flex-shrink-0 w-4 sm:w-8 lg:w-12" />
-          </div>
-        )}
+        {/* Collapsed: carousel */}
+        {expandLevel === 0 && <LiveSitesCarousel />}
 
-        {/* Expanded: responsive grid */}
+        {/* Expanded: 2-col grid */}
         {expandLevel > 0 && (
           <AnimatePresence mode="wait">
             <motion.div
-              key={expandLevel}
+              key="expanded"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-              ref={liveRef}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 px-6 sm:px-8 lg:px-12 py-6 sm:py-8"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 px-6 sm:px-8 lg:px-12 py-6 sm:py-8"
             >
-              {visibleSites.map((site) => (
-                <motion.div key={site.id} variants={itemVariants} initial="hidden" animate={liveInView ? "visible" : "hidden"}>
+              {liveSites.map((site) => (
+                <motion.div key={site.id} variants={itemVariants} initial="hidden" animate="visible">
                   <BrowserPreview
                     url={site.url}
                     title={site.title}
